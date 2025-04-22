@@ -32,107 +32,21 @@ class LabelInfo:
 
 
 labelInfo: dict[str, LabelInfo] = {
-    "averyL4731": LabelInfo(
-        labels_horizontal=7,
-        labels_vertical=27,
-        label_size=(25.4 * mm, 10 * mm),
-        gutter_size=(2.5 * mm, 0),
-        margin=(9 * mm, 13.5 * mm),
-        pagesize=A4,
-    ),
-    "averyL4732": LabelInfo(
-        labels_horizontal=5,
-        labels_vertical=16,
-        label_size=(35.6 * mm, 16.9 * mm),
-        gutter_size=(2.5 * mm, 0),
-        margin=(11 * mm, 13.5 * mm),
-        pagesize=A4,
-    ),
-    # 2.6 x 1 address labels
-    "avery5160": LabelInfo(
-        labels_horizontal=3,
-        labels_vertical=10,
-        label_size=(187, 72),
-        gutter_size=(11, 0),
-        margin=(14, 36),
-        pagesize=LETTER,
-    ),
-    "avery5161": LabelInfo(
-        labels_horizontal=2,
-        labels_vertical=10,
-        label_size=(288, 72),
-        gutter_size=(0, 0),
-        margin=(18, 36),
-        pagesize=LETTER,
-    ),
-    # 4 x 2 address labels
-    "avery5163": LabelInfo(
-        labels_horizontal=2,
-        labels_vertical=5,
-        label_size=(288, 144),
-        gutter_size=(0, 0),
-        margin=(18, 36),
-        pagesize=LETTER,
-    ),
-    # 1.75 x 0.5 return address labels
-    "avery5167": LabelInfo(
-        labels_horizontal=4,
-        labels_vertical=20,
-        label_size=(1.75 * inch, 0.5 * inch),
-        gutter_size=(0.3 * inch, 0),
-        margin=(0.3 * inch, 0.5 * inch),
-        pagesize=LETTER,
-    ),
-    # 3.5 x 2 business cards
-    "avery5371": LabelInfo(
-        labels_horizontal=2,
-        labels_vertical=5,
-        label_size=(252, 144),
-        gutter_size=(0, 0),
-        margin=(54, 36),
-        pagesize=LETTER,
-    ),
-    # Herma 4201, 64 removable labels
-    "herma4201": LabelInfo(
-        labels_horizontal=4,
-        labels_vertical=16,
-        label_size=(45.7 * mm, 16.9 * mm),
-        gutter_size=(2.5 * mm, 0),
-        margin=(8 * mm, 13 * mm),
-        pagesize=A4,
-    ),
-    # HERMA No. 10003 labels (former article No. 4345)
-    "herma10003": LabelInfo(
-        labels_horizontal=5,
-        labels_vertical=16,
-        label_size=(35.56 * mm, 16.93 * mm),
-        gutter_size=(2.54 * mm, 0),
-        margin=(11.02 * mm, 13.06 * mm),
-        pagesize=A4,
-    ),
-    "herma4246": LabelInfo(
-        labels_horizontal=4,
-        labels_vertical=12,
-        label_size=(45.72*mm, 21.167*mm),
-        gutter_size=(2.54*mm, 0),
-        margin=(9.75*mm,21.5*mm),
-        pagesize=A4,
-    ),
      "herma10105": LabelInfo(
         labels_horizontal=7,
         labels_vertical=10,
         label_size=(24*mm, 24*mm),
-        gutter_size=(3*mm, 3 * mm),
-        margin=(12*mm, 12*mm),
+        gutter_size=(2*mm, 0),
+        margin=(13*mm, 13*mm),
         pagesize=A4,
     ),
 }
 
-#RETURN_ADDRESS = 5167
-#BUSINESS_CARDS = 5371
+RETURN_ADDRESS = 5167
+BUSINESS_CARDS = 5371
 
 
-class AveryLabel:
+class SquareLabel:
     """ class for creating the pdfs """
     def __init__(self, label, debug,
                  topDown=True, start_pos=None,

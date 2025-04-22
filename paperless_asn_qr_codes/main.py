@@ -5,20 +5,40 @@ import re
 
 from reportlab.lib.units import mm
 from reportlab_qrcode import QRCodeImage
+from reportlab.pdfgen.canvas import Canvas
 
 from paperless_asn_qr_codes import avery_labels
 
-def render(c, _, y):
+
+def render(c: Canvas, w, h):
     """ Render the QR code and ASN number on the label """
     global startASN
     global digits
     barcode_value = f"ASN{startASN:0{digits}d}"
     startASN = startASN + 1
 
-    qr = QRCodeImage(barcode_value, size=y * 0.9)
-    qr.drawOn(c, 1 * mm, y * 0.05)
-    c.setFont("Helvetica", 2 * mm)
-    c.drawString(y, (y - 2 * mm) / 2, barcode_value)
+    #qr_scale: float = 0.8  # Scale the qrcode on the label
+    vertical_layout: bool = True # place qr_code an text above in vertical layout (for herma 10105 e.g.)
+
+    font_size: float = 3 * mm  # Font size for the text
+    margin: float = 1.75 * mm # Margin between the elements and the border of the label
+    padding: float = 0.25 * mm # Padding between the label elements
+
+
+    if vertical_layout:
+      qr = QRCodeImage(barcode_value, size=h - font_size - 2 * margin - padding, border=0)
+
+    # 0,0 is the lower left corner of the page
+    #thus place elements from there
+      qr.drawOn(c, (w - qr.width) /2, margin + font_size + padding)
+      c.setFont("Helvetica", font_size)
+      c.drawCentredString(w/2, margin, barcode_value)
+    else:
+      qr = QRCodeImage(barcode_value, size=h * 0.9)
+      qr.drawOn(c, 1 * mm, h * 0.05)
+      c.setFont("Helvetica", font_size)
+      c.drawString(h, (h - font_size) / 2, barcode_value)
+        
 
 
 def main():
